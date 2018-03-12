@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="jquery-resizable.js"></script>
+    <style>
+    .l-layout1 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-flex: 1;
+        -webkit-flex: auto;
+        -ms-flex: auto;
+        flex: auto;
+        background: #f0f2f5;
+    }
+
+        .l-layout1.l-layout-has-sider {
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .l-layout1, .l-layout1 * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+    .l-layout-header1, .l-layout-footer1 {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+
+    .l-layout-content1 {
+        -webkit-box-flex: 1;
+        -webkit-flex: auto;
+        -ms-flex: auto;
+        flex: auto;
+    }
+
+    .l-sider-header {
+        position: relative;
+        height: 35px;
+        line-height: 35px;
+        display: flex;
+        /*padding: 5px 10px 5px;*/
+        /*border-bottom-width: 1px;
+    border-bottom-style: solid;*/
+        background-color: #f7a972;
+        /*border-color: #4e97d9;*/
+    }
+
+    .l-sider-title {
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        -ms-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        display: flex;
+    }
+
+    .l-sider-tools {
+        overflow: hidden;
+        color: #fff;
+    }
+
+    .l-sider-toolitem {
+        display: inline-block;
+        padding: 0 8px;
+        cursor: pointer;
+    }
+
+    .l-layout-header1, .l-layout-footer1 {
+        background: #72d0a7;
+        /*padding: 24px 50px;*/
+        color: #fff;
+        font-size: 14px;
+        min-height: 35px;
+    }
+
+    .l-layout-content1 {
+        background: rgba(16, 142, 233, 1);
+        color: #fff;
+        min-height: 120px;
+    }
+
+    .l-layout-sider1 {
+        background: #3ba0e9;
+        color: #fff;
+        width: 300px;
+        min-width: 35px;
+        min-height: 35px;
+    }
+
+
+    .l-layout-drophandle-left, .l-layout-drophandle-right {
+  flex: 0 0 auto;
+  width: 10px;  
+  min-height:10px;
+  background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat #535353;
+  cursor: col-resize;  
+  z-index: 10;
+}
+
+
+.l-layout-drophandle-top, .l-layout-drophandle-bottom {
+  flex: 0 0 auto;
+  min-height:10px;
+  height: 10px;  
+  background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat #535353;
+  cursor: row-resize;  
+  z-index: 10;
+}
+
+#Demo {
+    height: 600px
+}
+</style>
+</head>
+<body>
+    <div id="Demo">
+    <div class="l-layout1" style="height: 100%;">
+        <div id="top-resize" class="l-layout-header1" style="height: 100px;">
+            <div class="l-sider-header">
+                <div class="l-sider-title">
+                    <span class="l-sider-title-text">头部标题</span>
+                </div>
+                <div class="l-sider-tools">
+                    <div class="l-sider-toolitem l-sider-header-toggle">
+                        <i class="iconfont icon-left"></i>
+                    </div>
+                </div>
+            </div>
+            <div>Header</div>
+        </div>
+        <div id="top-handle" class="l-layout-drophandle-top"></div>
+        <div class="l-layout1 l-layout-has-sider" style="height: 100%;">
+            <div id="left-resize" class="l-layout-sider1">
+                <div class="l-sider-header">
+                    <div class="l-sider-title">
+                        <span class="l-sider-title-text">左边标题</span>
+                    </div>
+                    <div class="l-sider-tools">
+                        <div class="l-sider-toolitem l-sider-header-toggle">
+                            <i class="iconfont icon-left"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="l-layout-sider-children">Sider</div>
+            </div>
+            <div id="left-handle" class="l-layout-drophandle-left"></div>
+            <div class="l-layout-content1">
+                <div class="l-sider-header">
+                    <div class="l-sider-title">
+                        <span class="l-sider-title-text ng-binding">内容标题</span>
+                    </div>
+                    <div class="l-sider-tools">
+                        <div class="l-sider-toolitem l-sider-header-toggle">
+                            <i class="iconfont icon-left"></i>
+                        </div>
+                    </div>
+                </div>
+                <div>Content</div>
+            </div>
+            <div id="right-handle" class="l-layout-drophandle-right"></div>
+            <div id="right-resize" class="l-layout-sider1">
+                <div class="l-sider-header">
+                    <div class="l-sider-title">
+                        <span class="l-sider-title-text">右边标题</span>
+                    </div>
+                    <div class="l-sider-tools">
+                        <div class="l-sider-toolitem l-sider-header-toggle">
+                            <i class="iconfont icon-left"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="l-layout-sider-children">Sider</div>
+            </div>
+        </div>
+        <div id="bottom-handle" class="l-layout-drophandle-bottom"></div>
+        <div id="bottom-resize" class="l-layout-footer1" style="height: 100px;">
+            <div class="l-sider-header">
+                <div class="l-sider-title">
+                    <span class="l-sider-title-text">尾部标题</span>
+                </div>
+                <div class="l-sider-tools">
+                    <div class="l-sider-toolitem l-sider-header-toggle">
+                        <i class="iconfont icon-left"></i>
+                    </div>
+                </div>
+            </div>
+            <div>Footer</div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    window.onload = function () {
+        var top = document.getElementById("top-resize");
+        var left = document.getElementById("left-resize");
+        var right = document.getElementById("right-resize");
+        var bottom = document.getElementById("bottom-resize");
+
+        $(top).resizable({
+            handleSelector: "#top-handle",
+            resizeWidth: false,
+            resizeHeightFrom: "bottom"
+        })
+        $(left).resizable({
+            handleSelector: "#left-handle",
+            resizeHeight: false,
+            resizeWidthFrom: "right"
+        })
+        $(right).resizable({
+            handleSelector: "#right-handle",
+            resizeHeight: false,
+            resizeWidthFrom: "left"
+        })
+        $(bottom).resizable({
+            handleSelector: "#bottom-handle",
+            resizeWidth: false,
+            resizeHeightFrom: "top"
+        })
+    }
+    </script>
+</html>
